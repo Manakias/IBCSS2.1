@@ -45,11 +45,19 @@ public class myCards{
       if(card.charAt(0)=='A'){
         return 1;}
       else{return 0;}
-    }
+    }   
+  public static int aces(String[] the_hand){
+   int sum=0;
+   for(int i=0; i<the_hand.length;i++){
+     sum = sum + aces(the_hand[i]);
+   }
+   return sum;}
   //end homework
   //Blackjack game, for homework due Feb 3
-    public static void playBlackjack(Integer card1, Integer card2, String[] deck, String[] dealt){
+    public static void playBlackjack(String[] playerDealt, String[] deck){
       Scanner scan = new Scanner(System.in);
+      int card1 = value(playerDealt[1]);
+      int card2 = value(playerDealt[0]);
       int cardValue = card1 + card2;
       System.out.println("Your card value is " + cardValue);
       System.out.println("Hit, or stand?");
@@ -66,10 +74,10 @@ public class myCards{
           int newCardValue = value(newCard);
           cardValue = cardValue + newCardValue;
           System.out.println("You drew a " + newCard);
+          System.out.println("Your card value is " + cardValue);
         }
         if (choice.equals("stand")){state=false;};
         if (cardValue > 21){
-          System.out.println("Your card value is " + cardValue);
           System.out.println("Bust! You lose!");
           state=false;
         }
@@ -77,6 +85,7 @@ public class myCards{
       }
       if (cardValue <= 21){ 
       System.out.println("Your card value is " + cardValue);
+      
         int dealerValue = (value(dealerHand[0])) + (value(dealerHand[1]));
         System.out.println("Dealer has a " + dealerHand[0] + " and a " + dealerHand[1] + ", " + dealerValue);
         if (dealerValue < 17){
@@ -131,13 +140,11 @@ public class myCards{
     shuffle(deck, 100000);
 
     
-    String[] delt = new String[10];
+    String[] delt = new String[2];
     delt[0]=deal(deck);
     delt[1]=deal(deck);
-    int card1 = value(delt[1]);
-    int card2 = value(delt[0]);
     System.out.println("You have " + delt[0] + " and " + delt[1]);
-    playBlackjack(card1, card2, deck, delt);
+    playBlackjack(delt, deck);
   }
   }
     
