@@ -6,6 +6,11 @@ public class EFStudente{
     this.name = new String ( studentName );
     this.ID = -1;
   }
+  public EFStudente(int ID){
+    this.name = new String("Agent Smith");
+    this.ID = ID;
+    this.classRank = new String("New student");
+  } 
   public void setName(String name){
     this.name = name;
   }
@@ -22,7 +27,7 @@ public class EFStudente{
     System.out.println("Student name is " + this.getName() + ", with ID# " + this.getID());
   }
   public void intro(EFStudente other){
-    System.out.println("Hello " + other.getName() + ", my name is " + this.getName() + ", and I am a " + this.getClassRank());
+    System.out.println("Hello " + other.getName() + this.getID() + ", my name is " + this.getName() + other.getID() + ", and I am a " + this.getClassRank());
   }
   public void setClassRank(String classRank){
     this.classRank = classRank;
